@@ -250,6 +250,7 @@
             <Property name="text" type="java.lang.String" value="Kil&#xe9;p&#xe9;s"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnStartMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnStartActionPerformed"/>
           </Events>
         </Component>

@@ -115,6 +115,11 @@ public class HalalLabirintus extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         BtnStart.setText("Kilépés");
+        BtnStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnStartMouseClicked(evt);
+            }
+        });
         BtnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnStartActionPerformed(evt);
@@ -164,15 +169,25 @@ public class HalalLabirintus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ImageIcon kep = new ImageIcon("menű 1.png");
+        /*ImageIcon kep = new ImageIcon("menű 1.png");
         JOptionPane.showMessageDialog(evt, kep);
-        JOptionPane.showMessageDialog(null, kep);
+        JOptionPane.showMessageDialog(null, kep);*/
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnStartMouseClicked
+ 
+    }//GEN-LAST:event_BtnStartMouseClicked
+
     private void BtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnStartActionPerformed
         System.exit(0);
-        JOptionPane.showm
+        int IkonTipus = 0;
+        String uzenet, cim;
+        cim="FIGYELEM";
+        uzenet="Biztos ki akarsz lépni?";
+        JOptionPane.showConfirmDialog(null,uzenet, cim, IkonTipus);
+        
+        
     }//GEN-LAST:event_BtnStartActionPerformed
 
     public static void main(String args[]) {
