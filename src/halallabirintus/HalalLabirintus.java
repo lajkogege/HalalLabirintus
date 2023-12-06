@@ -1,11 +1,16 @@
 package halallabirintus;
 
 import javax.swing.ImageIcon;
+import java.util.Random;
 
 public class HalalLabirintus extends javax.swing.JFrame {
 
+    private int doboKockaSzam;
+    private int doboKockaSzam2;
+
     public HalalLabirintus() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -14,25 +19,28 @@ public class HalalLabirintus extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         JplStat = new javax.swing.JPanel();
-        LblUgyeseg = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        LblEletero = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        LblSzerencse = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        TxtUgyeseg = new javax.swing.JTextField();
+        TxtEletero = new javax.swing.JTextField();
+        Txtszerencse1 = new javax.swing.JTextField();
+        LblArany = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jUgyeseg = new javax.swing.JButton();
+        jeletero = new javax.swing.JButton();
+        jszerencse = new javax.swing.JButton();
         JplLeiras = new javax.swing.JPanel();
         BtnBalOldalSzam = new javax.swing.JButton();
         BtnJobbOldalSzam = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        BtnStart = new javax.swing.JButton();
+        TxtLeiras = new javax.swing.JTextArea();
+        BtnKilpes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 500, 500));
-        setMaximumSize(new java.awt.Dimension(768, 432));
-        setMinimumSize(new java.awt.Dimension(768, 460));
+        setMaximumSize(new java.awt.Dimension(800, 700));
+        setMinimumSize(new java.awt.Dimension(800, 700));
         setPreferredSize(new java.awt.Dimension(768, 460));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -43,23 +51,49 @@ public class HalalLabirintus extends javax.swing.JFrame {
 
         JplStat.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
 
-        LblUgyeseg.setFont(new java.awt.Font("Algerian", 0, 14)); // NOI18N
-        LblUgyeseg.setText("Ügyesség:");
+        TxtUgyeseg.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
+        TxtUgyeseg.setText("0");
+        TxtUgyeseg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtUgyesegActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
-        jTextField1.setText("12");
+        TxtEletero.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
+        TxtEletero.setText("0");
 
-        LblEletero.setFont(new java.awt.Font("Algerian", 0, 14)); // NOI18N
-        LblEletero.setText("Életerö:");
+        Txtszerencse1.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
+        Txtszerencse1.setText("44");
 
-        jTextField3.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
-        jTextField3.setText("33");
+        LblArany.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblArany.setText("Arany:");
 
-        LblSzerencse.setFont(new java.awt.Font("Algerian", 0, 14)); // NOI18N
-        LblSzerencse.setText("Szerencse:");
+        jTextField4.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
+        jTextField4.setText("44");
 
-        jTextField2.setFont(new java.awt.Font("Algerian", 2, 14)); // NOI18N
-        jTextField2.setText("44");
+        jUgyeseg.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jUgyeseg.setText("Ügyeség");
+        jUgyeseg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUgyesegActionPerformed(evt);
+            }
+        });
+
+        jeletero.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jeletero.setText("Életerő");
+        jeletero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jeleteroActionPerformed(evt);
+            }
+        });
+
+        jszerencse.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jszerencse.setText("Szerencse");
+        jszerencse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jszerencseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JplStatLayout = new javax.swing.GroupLayout(JplStat);
         JplStat.setLayout(JplStatLayout);
@@ -67,62 +101,76 @@ public class HalalLabirintus extends javax.swing.JFrame {
             JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JplStatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jszerencse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jeletero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(JplStatLayout.createSequentialGroup()
-                        .addComponent(LblSzerencse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                    .addGroup(JplStatLayout.createSequentialGroup()
-                        .addComponent(LblEletero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JplStatLayout.createSequentialGroup()
-                        .addComponent(LblUgyeseg)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 10, Short.MAX_VALUE))
+                        .addComponent(LblArany)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jUgyeseg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Txtszerencse1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtEletero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtUgyeseg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         JplStatLayout.setVerticalGroup(
             JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JplStatLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblUgyeseg)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtUgyeseg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jUgyeseg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblEletero))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(TxtEletero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jeletero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblSzerencse)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3))
+                    .addComponent(Txtszerencse1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jszerencse))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JplStatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblArany)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(JplStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 100));
+        getContentPane().add(JplStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 140));
 
         JplLeiras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         BtnBalOldalSzam.setText("66.oldal");
-
-        BtnJobbOldalSzam.setText("270.oldal");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Gabriola", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Miután öt percet haladtál lassan az alagútban, egy kőasztalhoz érsz, amely a bal oldali fal mellett áll.\n Hat doboz van rajta, egyikükre a te neved festették. Ha kiakarod nyitni a dobozt, lapozz a 270-re. \nHa inkább tovább haladsz észak felé, lapozz a 66-ra.");
-        jScrollPane1.setViewportView(jTextArea1);
-
-        BtnStart.setText("Kilépés");
-        BtnStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnStartMouseClicked(evt);
+        BtnBalOldalSzam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBalOldalSzamActionPerformed(evt);
             }
         });
-        BtnStart.addActionListener(new java.awt.event.ActionListener() {
+
+        BtnJobbOldalSzam.setText("270.oldal");
+        BtnJobbOldalSzam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnStartActionPerformed(evt);
+                BtnJobbOldalSzamActionPerformed(evt);
+            }
+        });
+
+        TxtLeiras.setColumns(20);
+        TxtLeiras.setFont(new java.awt.Font("Gabriola", 0, 18)); // NOI18N
+        TxtLeiras.setRows(5);
+        TxtLeiras.setText("Miután öt percet haladtál lassan az alagútban, egy kőasztalhoz érsz, amely a bal oldali fal mellett áll.\n Hat doboz van rajta, egyikükre a te neved festették. Ha kiakarod nyitni a dobozt, lapozz a 270-re. \nHa inkább tovább haladsz észak felé, lapozz a 66-ra.");
+        jScrollPane1.setViewportView(TxtLeiras);
+
+        BtnKilpes.setText("Kilépés");
+        BtnKilpes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnKilpesMouseClicked(evt);
+            }
+        });
+        BtnKilpes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKilpesActionPerformed(evt);
             }
         });
 
@@ -131,33 +179,35 @@ public class HalalLabirintus extends javax.swing.JFrame {
         JplLeirasLayout.setHorizontalGroup(
             JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JplLeirasLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JplLeirasLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JplLeirasLayout.createSequentialGroup()
                         .addComponent(BtnBalOldalSzam)
-                        .addGap(243, 243, 243)
-                        .addComponent(BtnStart)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnJobbOldalSzam)
-                        .addGap(24, 24, 24))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
+                        .addComponent(BtnKilpes)
+                        .addGap(35, 35, 35)
+                        .addComponent(BtnJobbOldalSzam)))
+                .addContainerGap())
         );
         JplLeirasLayout.setVerticalGroup(
             JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JplLeirasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnBalOldalSzam)
-                    .addComponent(BtnJobbOldalSzam)
-                    .addComponent(BtnStart))
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JplLeirasLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(BtnBalOldalSzam))
+                    .addGroup(JplLeirasLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(JplLeirasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnJobbOldalSzam)
+                            .addComponent(BtnKilpes))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        getContentPane().add(JplLeiras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 730, 110));
+        getContentPane().add(JplLeiras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 770, 220));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\LajkóGergő(SZOFT_202\\Documents\\NetBeansProjects\\2023.11.22\\HalalLabirintus\\HalalLabirintus\\kepek\\hatter.jpg")); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(800, 1000));
@@ -175,11 +225,11 @@ public class HalalLabirintus extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void BtnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnStartMouseClicked
+    private void BtnKilpesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnKilpesMouseClicked
  
-    }//GEN-LAST:event_BtnStartMouseClicked
+    }//GEN-LAST:event_BtnKilpesMouseClicked
 
-    private void BtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnStartActionPerformed
+    private void BtnKilpesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKilpesActionPerformed
         System.exit(0);
         int IkonTipus = 0;
         String uzenet, cim;
@@ -188,7 +238,45 @@ public class HalalLabirintus extends javax.swing.JFrame {
         JOptionPane.showConfirmDialog(null,uzenet, cim, IkonTipus);
         
         
-    }//GEN-LAST:event_BtnStartActionPerformed
+    }//GEN-LAST:event_BtnKilpesActionPerformed
+
+    private void TxtUgyesegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUgyesegActionPerformed
+       
+    }//GEN-LAST:event_TxtUgyesegActionPerformed
+
+    private void BtnBalOldalSzamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBalOldalSzamActionPerformed
+ TxtLeiras.setText("Néhány perc gyaloglás után egy elágazáshoz érsz az alagútban.\n Egy, a falra festett fehér nyíl nyugatfelé mutat.\n A földön nedves lábnyomok jelzik, merre haladtak az előtted járók.\n Nehéz biztosan megmondani, de úgy tűnik, hogy három közülük a nyíl irányába halad, míg egyikük úgy döntött, hogy keletnek megy.\n Ha nyugat felé kívánsz menni, lapozz a 293-ra. Ha keletnek, lapozz a 56-re.");
+ BtnBalOldalSzam.setText("56.oldal");
+ BtnJobbOldalSzam.setText("270.olda");
+ 
+ 
+    }//GEN-LAST:event_BtnBalOldalSzamActionPerformed
+
+    private void BtnJobbOldalSzamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJobbOldalSzamActionPerformed
+ TxtLeiras.setText("A három pár nedves lábnyomot követve az alagútnyugati elágazásában hamarosan egy újabb el-ágazáshoz érsz.\n Ha továbbmész nyugat felé a lábnyomokat követve, lapozz a 137-re.\n Ha inkább észak felé mész a harmadik pár lábnyom után, lapozz a 387-re.\n");
+ BtnJobbOldalSzam.setText("293.oldal");
+ BtnBalOldalSzam.setText("56.oldal");{
+     TxtLeiras.setText("Látod, hogy az akadály egy széles, barna, sziklaszerű tárgy. Megérinted, és meglepve tapasztalod, hogy lágy, szivacsszerű. Ha át szeretnél mászni rajta, lapozz a 373-ra. Ha ketté akarod vágni a kardoddal, lapozz a 215-re.");
+ }
+    }//GEN-LAST:event_BtnJobbOldalSzamActionPerformed
+
+    private void jUgyesegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUgyesegActionPerformed
+        Random random = new Random();
+        doboKockaSzam= random.nextInt(6)+1;
+        TxtUgyeseg.setText(String.valueOf(doboKockaSzam+6));
+    }//GEN-LAST:event_jUgyesegActionPerformed
+
+    private void jeleteroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jeleteroActionPerformed
+        Random random = new Random();
+        doboKockaSzam= random.nextInt(12)+1;
+        TxtEletero.setText(String.valueOf(doboKockaSzam+12));
+    }//GEN-LAST:event_jeleteroActionPerformed
+
+    private void jszerencseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jszerencseActionPerformed
+       Random random = new Random();
+        doboKockaSzam= random.nextInt(6)+1;
+        Txtszerencse1.setText(String.valueOf(doboKockaSzam+6));
+    }//GEN-LAST:event_jszerencseActionPerformed
 
     public static void main(String args[]) {
        
@@ -202,18 +290,34 @@ public class HalalLabirintus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBalOldalSzam;
     private javax.swing.JButton BtnJobbOldalSzam;
-    private javax.swing.JButton BtnStart;
+    private javax.swing.JButton BtnKilpes;
     private javax.swing.JPanel JplLeiras;
     private javax.swing.JPanel JplStat;
-    private javax.swing.JLabel LblEletero;
-    private javax.swing.JLabel LblSzerencse;
-    private javax.swing.JLabel LblUgyeseg;
+    private javax.swing.JLabel LblArany;
+    private javax.swing.JTextField TxtEletero;
+    private javax.swing.JTextArea TxtLeiras;
+    private javax.swing.JTextField TxtUgyeseg;
+    private javax.swing.JTextField Txtszerencse1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton jUgyeseg;
+    private javax.swing.JButton jeletero;
+    private javax.swing.JButton jszerencse;
     // End of variables declaration//GEN-END:variables
+
+    private int generateRandomNumber(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static class random {
+
+        private static int nextInt(int i) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public random() {
+        }
+    }
 }
